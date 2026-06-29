@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LUMA Dental | Премиальная стоматология</title>
+    <meta
+      name="description"
+      content="Портфолио-лендинг премиальной стоматологической клиники LUMA Dental с онлайн-записью, врачами, услугами и календарем свободных слотов."
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/images/hero-clinic.png" as="image" />
+    <link rel="stylesheet" href="assets/styles.css?v=20260629-mobile-slider-axis" />
+  </head>
+  <body>
+    <header class="site-header" data-site-header>
+      <a class="clinic-brand" href="#top" aria-label="LUMA Dental">
+        <span class="clinic-mark" aria-hidden="true">L</span>
+        <span>
+          <strong>LUMA Dental</strong>
+          <small>clinic concept</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Главная навигация">
+        <a href="#doctors">Врачи</a>
+        <a href="#process">Работа</a>
+        <a href="#treatment">Лечение</a>
+        <a href="#services">Услуги</a>
+        <a href="#booking">Запись</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="arqon-chip" href="#arqon" aria-label="Авторский бренд ARQON">
+          <img src="assets/images/arqon-logo.jpg" alt="" />
+          <span>ARQON</span>
+        </a>
+        <a class="button button-solid" href="#booking">Записаться</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src="assets/images/hero-clinic.png" alt="Интерьер премиальной стоматологической клиники LUMA Dental" />
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-lines" aria-hidden="true"></div>
+
+        <div class="hero-content reveal">
+          <p class="eyebrow">Самара · эстетика · имплантация · лечение</p>
+          <h1 id="hero-title">LUMA Dental</h1>
+          <p class="hero-slogan">Стоматология тишины, точности и света.</p>
+          <p class="hero-copy">
+            Осмотр, диагностика, план лечения и свободные окна записи собраны в один спокойный маршрут.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-accent" href="#booking">Выбрать время</a>
+            <a class="button button-glass" href="#services">Посмотреть услуги</a>
+          </div>
+        </div>
+
+        <aside class="hero-availability reveal" aria-label="Ближайшие свободные окна">
+          <p>Ближайшая запись</p>
+          <ul class="next-slot-list" data-next-slots>
+            <li><span class="slot-loading">Подбираем время</span></li>
+          </ul>
+          <small>Заявка фиксирует слот до звонка администратора</small>
+        </aside>
+      </section>
+
+      <section class="section doctors-section" id="doctors" aria-labelledby="doctors-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Врачи</p>
+          <h2 id="doctors-title">Команда, которую видно до первого визита.</h2>
+          <p>
+            Пациент выбирает не кабинет, а человека. Поэтому у каждого направления есть свой врач, ближайший прием и понятная зона ответственности.
+          </p>
+        </div>
+
+        <div class="doctors-layout">
+          <figure class="image-panel reveal">
+            <img src="assets/images/doctors-team.png" alt="Команда врачей LUMA Dental в современном кабинете" />
+            <figcaption>Терапия · хирургия · ортодонтия · эстетика</figcaption>
+          </figure>
+
+          <div class="doctor-slider-controls reveal" aria-label="Навигация по врачам">
+            <button class="doctor-slider-button" type="button" data-doctor-prev aria-label="Предыдущий врач">‹</button>
+            <span class="doctor-swipe-hint">Листайте карточки</span>
+            <button class="doctor-slider-button doctor-slider-next" type="button" data-doctor-next aria-label="Следующий врач">›</button>
+          </div>
+
+          <div class="doctor-grid" data-doctor-slider>
+            <article class="doctor-card reveal" id="doctor-alina" data-doctor-card data-doctor-index="0">
+              <img class="doctor-photo" src="assets/images/doctor-alina.png" alt="Алина Кравцова" loading="lazy" />
+              <span>Терапевт</span>
+              <h3>Алина Кравцова</h3>
+              <p>Лечение кариеса, каналы, восстановление формы зуба.</p>
+              <button type="button" data-service-shortcut="Лечение кариеса" data-doctor-shortcut="Алина Кравцова">Выбрать врача</button>
+            </article>
+            <article class="doctor-card reveal" id="doctor-mark" data-doctor-card data-doctor-index="1">
+              <img class="doctor-photo" src="assets/images/doctor-mark.png" alt="Марк Левин" loading="lazy" />
+              <span>Имплантолог</span>
+              <h3>Марк Левин</h3>
+              <p>Удаление, имплантация, хирургическое планирование.</p>
+              <button type="button" data-service-shortcut="Имплантация" data-doctor-shortcut="Марк Левин">Выбрать врача</button>
+            </article>
+            <article class="doctor-card" id="doctor-eva" data-doctor-card data-doctor-index="2">
+              <img class="doctor-photo" src="assets/images/doctor-eva.png" alt="Ева Сафина" loading="lazy" />
+              <span>Ортодонт</span>
+              <h3>Ева Сафина</h3>
+              <p>Элайнеры, брекеты, цифровое исправление прикуса.</p>
+              <button type="button" data-service-shortcut="Ортодонтия" data-doctor-shortcut="Ева Сафина">Выбрать врача</button>
+            </article>
+            <article class="doctor-card" id="doctor-timur" data-doctor-card data-doctor-index="3">
+              <img class="doctor-photo" src="assets/images/doctor-timur.png" alt="Тимур Рахманов" loading="lazy" />
+              <span>Ортопед</span>
+              <h3>Тимур Рахманов</h3>
+              <p>Виниры, коронки, восстановление эстетики улыбки.</p>
+              <button type="button" data-service-shortcut="Виниры" data-doctor-shortcut="Тимур Рахманов">Выбрать врача</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process-section" id="process" aria-labelledby="process-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Как проходит работа</p>
+          <h2 id="process-title">Пять шагов без боли.</h2>
+        </div>
+
+        <div class="process-slider-controls reveal" aria-label="Навигация по этапам работы">
+          <button class="process-slider-button" type="button" data-process-prev aria-label="Предыдущий этап">‹</button>
+          <span class="process-swipe-hint">Листайте этапы</span>
+          <button class="process-slider-button process-slider-next" type="button" data-process-next aria-label="Следующий этап">›</button>
+        </div>
+
+        <div class="process-track" data-process-slider>
+          <article class="process-step reveal" id="process-step-1" data-process-card data-process-index="0">
+            <span>01</span>
+            <h3>Осмотр</h3>
+            <p>Врач уточняет жалобы, смотрит состояние зубов и объясняет, что требует внимания.</p>
+          </article>
+          <article class="process-step reveal" id="process-step-2" data-process-card data-process-index="1">
+            <span>02</span>
+            <h3>Диагностика</h3>
+            <p>Снимки и цифровое планирование помогают увидеть картину целиком.</p>
+          </article>
+          <article class="process-step" id="process-step-3" data-process-card data-process-index="2">
+            <span>03</span>
+            <h3>План</h3>
+            <p>Пациент получает маршрут лечения, сроки и предварительную стоимость.</p>
+          </article>
+          <article class="process-step" id="process-step-4" data-process-card data-process-index="3">
+            <span>04</span>
+            <h3>Лечение</h3>
+            <p>Процедуры идут по согласованным этапам, без резких изменений в день приема.</p>
+          </article>
+          <article class="process-step" id="process-step-5" data-process-card data-process-index="4">
+            <span>05</span>
+            <h3>Контроль</h3>
+            <p>После приема врач дает рекомендации и назначает контроль при необходимости.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section treatment-section" id="treatment" aria-labelledby="treatment-title">
+        <div class="treatment-layout">
+          <div class="treatment-copy reveal">
+            <p class="eyebrow">Мы предлагаем лечение</p>
+            <h2 id="treatment-title">Сначала увидеть причину, потом лечить.</h2>
+            <p>
+              В LUMA Dental лечение начинается с диагностики и разговора. Врач показывает проблему, объясняет варианты и помогает выбрать решение без давления.
+            </p>
+            <div class="treatment-points" aria-label="Подход к лечению">
+              <span>План до старта</span>
+              <span>Профильный врач</span>
+              <span>Контроль результата</span>
+            </div>
+          </div>
+          <figure class="image-panel reveal">
+            <img src="assets/images/diagnostics-room.png" alt="Врач показывает пациенту результаты диагностики на экране" />
+            <figcaption>Осмотр и диагностика перед лечением</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section services-section" id="services" aria-labelledby="services-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Услуги</p>
+          <h2 id="services-title">Все, что нужно для уверенной улыбки.</h2>
+          <p>Цены в макете стартовые. Точная стоимость зависит от диагностики и выбранного плана.</p>
+        </div>
+
+        <div class="services-layout">
+          <figure class="image-panel service-photo reveal">
+            <img src="assets/images/aesthetic-smile.png" alt="Подбор оттенка зубов для эстетического лечения" />
+            <figcaption>Эстетическая стоматология и подбор оттенка</figcaption>
+          </figure>
+
+          <div class="service-slider-controls reveal" aria-label="Навигация по услугам">
+            <button class="service-slider-button" type="button" data-service-prev aria-label="Предыдущая услуга">‹</button>
+            <span class="service-swipe-hint">Листайте услуги</span>
+            <button class="service-slider-button service-slider-next" type="button" data-service-next aria-label="Следующая услуга">›</button>
+          </div>
+
+          <div class="service-grid" data-service-slider>
+            <article class="service-card reveal" id="service-consultation" data-service-card data-service-index="0">
+              <span>30 минут</span>
+              <h3>Консультация</h3>
+              <p>Первичный осмотр, ответы на вопросы и маршрут лечения.</p>
+              <strong>от 1 500 ₽</strong>
+              <button type="button" data-service-shortcut="Консультация">Записаться</button>
+            </article>
+            <article class="service-card reveal" id="service-hygiene" data-service-card data-service-index="1">
+              <span>60 минут</span>
+              <h3>Профгигиена</h3>
+              <p>Удаление налета, полировка и подбор домашнего ухода.</p>
+              <strong>от 4 900 ₽</strong>
+              <button type="button" data-service-shortcut="Профгигиена">Записаться</button>
+            </article>
+            <article class="service-card" id="service-caries" data-service-card data-service-index="2">
+              <span>60 минут</span>
+              <h3>Лечение кариеса</h3>
+              <p>Аккуратное восстановление зуба с подбором цвета.</p>
+              <strong>от 6 800 ₽</strong>
+              <button type="button" data-service-shortcut="Лечение кариеса">Записаться</button>
+            </article>
+            <article class="service-card" id="service-implant" data-service-card data-service-index="3">
+              <span>90 минут</span>
+              <h3>Имплантация</h3>
+              <p>Хирургический этап и дальнейшее восстановление функции.</p>
+              <strong>от 39 000 ₽</strong>
+              <button type="button" data-service-shortcut="Имплантация" data-doctor-shortcut="Марк Левин">Записаться</button>
+            </article>
+            <article class="service-card" id="service-veneers" data-service-card data-service-index="4">
+              <span>2 визита</span>
+              <h3>Виниры</h3>
+              <p>Форма, цвет и линия улыбки с естественным результатом.</p>
+              <strong>от 24 000 ₽</strong>
+              <button type="button" data-service-shortcut="Виниры" data-doctor-shortcut="Тимур Рахманов">Записаться</button>
+            </article>
+            <article class="service-card" id="service-ortho" data-service-card data-service-index="5">
+              <span>от 40 минут</span>
+              <h3>Ортодонтия</h3>
+              <p>Брекеты, элайнеры и цифровой план исправления прикуса.</p>
+              <strong>от 3 000 ₽</strong>
+              <button type="button" data-service-shortcut="Ортодонтия" data-doctor-shortcut="Ева Сафина">Записаться</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section booking-section" id="booking" aria-labelledby="booking-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Календарь записи</p>
+          <h2 id="booking-title">Выберите дату и свободное время.</h2>
+          <p>Заявка будет сохранена после отправки формы. Администратор подтвердит прием по телефону.</p>
+        </div>
+
+        <form class="booking-form reveal" data-booking-form>
+          <div class="booking-steps" aria-label="Шаги записи">
+            <span>Услуга</span>
+            <span>Врач</span>
+            <span>Дата</span>
+            <span>Время</span>
+            <span>Контакты</span>
+          </div>
+
+          <div class="booking-choice-grid">
+            <label>
+              Что нужно сделать
+              <select name="service" data-service-select required>
+                <option value="">Выберите услугу</option>
+                <option>Консультация</option>
+                <option>Профгигиена</option>
+                <option>Лечение кариеса</option>
+                <option>Имплантация</option>
+                <option>Виниры</option>
+                <option>Ортодонтия</option>
+              </select>
+            </label>
+            <label>
+              Врач
+              <select name="doctor" data-doctor-select required>
+                <option value="">Выберите врача</option>
+                <option>Алина Кравцова</option>
+                <option>Марк Левин</option>
+                <option>Ева Сафина</option>
+                <option>Тимур Рахманов</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="booking-grid">
+            <div class="calendar-shell">
+              <div class="calendar-toolbar">
+                <button class="icon-button" type="button" data-calendar-prev aria-label="Предыдущий месяц">‹</button>
+                <strong data-calendar-label></strong>
+                <button class="icon-button" type="button" data-calendar-next aria-label="Следующий месяц">›</button>
+              </div>
+              <div class="weekday-row" aria-hidden="true">
+                <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+              </div>
+              <div class="calendar-grid" data-calendar-grid></div>
+            </div>
+
+            <div class="slot-panel">
+              <div class="slot-panel-head">
+                <span>Свободные окна</span>
+                <strong data-selected-date-label></strong>
+              </div>
+              <div class="slot-grid" data-slot-grid></div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Имя
+              <input name="name" type="text" placeholder="Например, София" autocomplete="name" required />
+            </label>
+            <label>
+              Телефон
+              <input name="phone" type="tel" placeholder="+7 900 000-00-00" autocomplete="tel" required />
+            </label>
+            <label class="wide-field">
+              Комментарий
+              <input name="note" type="text" placeholder="Например, хочу консультацию по винирам" />
+            </label>
+          </div>
+
+          <input type="hidden" name="date" data-selected-date />
+          <input type="hidden" name="time" data-selected-time />
+          <div class="form-footer">
+            <p data-booking-status aria-live="polite"></p>
+            <button class="button button-accent" type="submit">Отправить заявку</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="section contacts-section" id="contacts" aria-labelledby="contacts-title">
+        <div class="contact-layout">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Контакты</p>
+            <h2 id="contacts-title">Самара, Ново-Садовая, 24.</h2>
+            <p>Пн-сб: 9:00-20:00. Воскресенье по предварительной записи.</p>
+            <div class="contact-actions">
+              <a class="button button-solid" href="tel:+78462000000">+7 846 200-00-00</a>
+              <a class="button button-glass" href="https://maps.google.com/?q=Самара,+Ново-Садовая,+24">Маршрут</a>
+            </div>
+          </div>
+          <div class="map-panel reveal" aria-label="Карта проезда до клиники">
+            <span>Ново-Садовая, 24</span>
+            <strong>LUMA Dental</strong>
+            <i aria-hidden="true"></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="arqon-section" id="arqon" aria-label="Автор проекта ARQON">
+        <div class="arqon-inner">
+          <p>Designed by</p>
+          <img src="assets/images/arqon-logo.jpg" alt="ARQON" />
+          <span>portfolio concept · dental landing page</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>LUMA Dental, demo landing</p>
+      <a href="#top">Наверх</a>
+    </footer>
+
+    <script src="assets/app.js?v=20260629-mobile-slider-axis" defer></script>
+  </body>
+</html>

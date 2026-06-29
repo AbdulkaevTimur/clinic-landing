@@ -1,0 +1,6 @@
+.DS_Store
+.vercel/
+.agents/
+.playwright-cli/
+output/
+skills-lock.json

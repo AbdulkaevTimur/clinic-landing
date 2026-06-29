@@ -1,0 +1,5 @@
+.agents/
+.playwright-cli/
+output/
+skills-lock.json
+.DS_Store
