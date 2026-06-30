@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="ARQON">
+  <rect width="900" height="520" fill="#020202"/>
+  <g transform="translate(450 190)" fill="#f7eee1">
+    <rect x="-18" y="-116" width="36" height="70" rx="2" transform="rotate(0)"/>
+    <rect x="-18" y="-116" width="36" height="70" rx="2" transform="rotate(36)"/>
+    <rect x="-18" y="-116" width="36" height="70" rx="2" transform="rotate(72)"/>
+    <rect x="-18" y="-116" width="36" height="70" rx="2" transform="rotate(108)"/>
+    <rect x="-18" y="-116" width="36" height="70" rx="2" transform="rotate(144)"/>
+    <rect x="-18" y="-116" width="36" height="70" rx="2" transform="rotate(180)"/>
+    <rect x="-18" y="-116" width="36" height="70" rx="2" transform="rotate(216)"/>
+    <rect x="-18" y="-116" width="36" height="70" rx="2" transform="rotate(252)"/>
+    <rect x="-18" y="-116" width="36" height="70" rx="2" transform="rotate(288)"/>
+    <rect x="-18" y="-116" width="36" height="70" rx="2" transform="rotate(324)" fill="#e3c1aa"/>
+    <circle r="30"/>
+  </g>
+  <text x="450" y="392" fill="#f7eee1" text-anchor="middle"
+    font-family="Arial Rounded MT Bold, Helvetica Neue, Arial, sans-serif"
+    font-size="82" font-weight="500" letter-spacing="36">ARQON</text>
+</svg>

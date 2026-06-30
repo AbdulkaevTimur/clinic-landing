@@ -167,8 +167,7 @@ p {
   white-space: nowrap;
 }
 
-.clinic-brand small,
-.arqon-chip span {
+.clinic-brand small {
   display: block;
   color: var(--faint);
   font-size: 11px;
@@ -216,25 +215,6 @@ p {
   align-items: center;
   gap: 8px;
   justify-self: end;
-}
-
-.arqon-chip {
-  display: none;
-  min-height: 44px;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 10px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.arqon-chip img {
-  width: 42px;
-  height: 42px;
-  border-radius: 6px;
-  object-fit: cover;
-  object-position: 50% 60%;
 }
 
 .button,
@@ -592,9 +572,29 @@ p {
 }
 
 .booking-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background:
+    linear-gradient(180deg, #0a0807 0%, rgba(9, 8, 7, 0.98) 86px, rgba(9, 8, 7, 0.72) 190px, transparent 330px),
     linear-gradient(180deg, rgba(201, 151, 100, 0.12), transparent 340px),
     #090807;
+}
+
+.booking-section::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  height: clamp(260px, 34vw, 420px);
+  pointer-events: none;
+  background: linear-gradient(180deg, #0a0807 0%, rgba(10, 8, 7, 0.88) 42%, transparent 100%);
+}
+
+.booking-section .section-heading,
+.booking-form {
+  position: relative;
+  z-index: 1;
 }
 
 .booking-form {
@@ -897,48 +897,143 @@ input::placeholder {
   box-shadow: 0 0 0 18px rgba(227, 180, 125, 0.12);
 }
 
-.arqon-section {
-  padding: 70px 18px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: #020202;
+.site-footer {
+  color: var(--faint);
 }
 
-.arqon-inner {
-  width: min(100%, 720px);
+.arqon-footer {
+  position: relative;
+  min-height: 100svh;
   display: grid;
-  justify-items: center;
-  gap: 12px;
-  margin: 0 auto;
-  text-align: center;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(72px, 10vw, 120px) 18px 32px;
+  border-top: 1px solid var(--line);
+  background: #000;
+  isolation: isolate;
+  scroll-margin-top: 110px;
 }
 
-.arqon-inner p,
-.arqon-inner span {
+.arqon-footer-kicker,
+.arqon-footer-meta {
+  position: relative;
+  z-index: 2;
   color: var(--faint);
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
 }
 
-.arqon-inner img {
-  width: min(440px, 100%);
-  border-radius: var(--radius);
+.arqon-footer-kicker {
+  align-self: end;
+  margin: 0;
+  letter-spacing: 0;
 }
 
-.site-footer {
+.arqon-eye {
+  position: relative;
+  z-index: 1;
+  width: min(100vmin, 760px);
+  aspect-ratio: 1;
+  isolation: isolate;
+}
+
+.arqon-eye-base,
+.arqon-eye-detail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.arqon-eye-base {
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.arqon-eye-detail {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.arqon-mark-cover {
+  fill: #000;
+}
+
+.arqon-segment {
+  fill: #fffaf1;
+  filter: url("#arqonSegmentGlow");
+  opacity: 0.96;
+}
+
+.arqon-segment.is-copper {
+  fill: #d7b292;
+}
+
+.arqon-pupil-core {
+  fill: #fffaf1;
+  filter: url("#arqonPupilGlow");
+}
+
+.arqon-pupil-soft {
+  fill: rgba(255, 250, 241, 0.2);
+  filter: url("#arqonSoftGlow");
+}
+
+.arqon-pupil-shadow {
+  fill: none;
+  stroke: rgba(255, 250, 241, 0.2);
+  stroke-width: 1.4;
+}
+
+.arqon-pupil-glint {
+  fill: #d7b292;
+  opacity: 0.78;
+}
+
+.arqon-wordmark-dim {
+  fill: #000;
+  opacity: 0.68;
+}
+
+.arqon-letter-light {
+  opacity: 0;
+}
+
+.arqon-footer-meta {
+  width: min(100%, 720px);
   display: flex;
   flex-wrap: wrap;
+  align-self: start;
   justify-content: space-between;
   gap: 14px;
-  padding: 28px 18px;
-  color: var(--faint);
-  font-size: 13px;
-  font-weight: 800;
 }
 
-.site-footer p {
-  margin: 0;
+.arqon-footer-meta span,
+.arqon-footer-meta a {
+  color: inherit;
+}
+
+@media (max-width: 720px) {
+  .arqon-footer {
+    min-height: 86svh;
+    justify-items: center;
+  }
+
+  .arqon-eye {
+    width: min(100%, 420px);
+    justify-self: center;
+    margin-inline: auto;
+  }
+
+  .arqon-footer-meta {
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 .reveal {
@@ -1030,10 +1125,6 @@ input::placeholder {
     justify-content: center;
   }
 
-  .arqon-chip {
-    display: inline-flex;
-  }
-
   .hero {
     min-height: 84svh;
     grid-template-columns: minmax(0, 1fr) 360px;
@@ -1112,7 +1203,7 @@ input::placeholder {
     inset: 0 -42vw;
     z-index: -2;
     pointer-events: none;
-    background: url("images/doctors-team.png") center / auto 100% no-repeat;
+    background: url("images/doctors-team.webp") center / auto 100% no-repeat;
     opacity: 0.88;
     transform: translate3d(var(--doctor-bg-shift), 0, 0) scale(1.02);
     will-change: transform;
@@ -1168,7 +1259,7 @@ input::placeholder {
     inset: 0 -42vw;
     z-index: -2;
     pointer-events: none;
-    background: url("images/diagnostics-room.png") 54% center / auto 100% no-repeat;
+    background: url("images/diagnostics-room.webp") 54% center / auto 100% no-repeat;
     opacity: 0.82;
     transform: scale(1.02);
   }
@@ -1229,7 +1320,7 @@ input::placeholder {
     inset: 0 -42vw;
     z-index: -2;
     pointer-events: none;
-    background: url("images/aesthetic-smile.png") 57% center / auto 100% no-repeat;
+    background: url("images/aesthetic-smile.webp") 57% center / auto 100% no-repeat;
     opacity: 0.72;
     transform: translate3d(var(--services-bg-shift), 0, 0) scale(1.02);
     will-change: transform;
@@ -1242,7 +1333,7 @@ input::placeholder {
     z-index: -1;
     pointer-events: none;
     background:
-      linear-gradient(180deg, rgba(10, 8, 7, 0.92) 0%, rgba(7, 6, 5, 0.72) 34%, rgba(7, 6, 5, 0.78) 74%, #0a0807 100%),
+      linear-gradient(180deg, #0a0807 0%, rgba(10, 8, 7, 0.98) 11%, rgba(7, 6, 5, 0.82) 34%, rgba(7, 6, 5, 0.78) 74%, #0a0807 100%),
       linear-gradient(rgba(247, 238, 225, 0.05) 1px, transparent 1px),
       linear-gradient(90deg, rgba(247, 238, 225, 0.05) 1px, transparent 1px);
     background-size: 100% 100%, 72px 72px, 72px 72px;

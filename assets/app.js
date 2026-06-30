@@ -570,6 +570,260 @@
     update();
   }
 
+  function bindArqonEye() {
+    const demo = document.querySelector("[data-arqon-eye]");
+    if (!demo) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const logoReference = demo.dataset.logoReference;
+    const pupil = demo.querySelector("[data-arqon-pupil]");
+    const segmentLayer = demo.querySelector("[data-arqon-segments]");
+    const letterLightLayer = demo.querySelector("[data-arqon-letter-lights]");
+    if (!logoReference || !pupil || !segmentLayer || !letterLightLayer) return;
+
+    const mark = {
+      cx: 653,
+      cy: 522,
+    };
+
+    const segmentModel = [
+      { angle: -149.9 },
+      { angle: -112.1 },
+      { angle: -74.9 },
+      { angle: -39.7 },
+      { angle: -5.9 },
+      { angle: 28.5, copper: true },
+      { angle: 65.2 },
+      { angle: 102.2 },
+      { angle: 138.3 },
+      { angle: 173.4 },
+    ];
+
+    const referenceProfile = [
+      { angle: -149.9, span: 22.9, inner: 84.6, outer: 148.6 },
+      { angle: -112.1, span: 23.2, inner: 80.5, outer: 135.0 },
+      { angle: -74.9, span: 18.1, inner: 78.0, outer: 113.4 },
+      { angle: -39.7, span: 15.6, inner: 76.0, outer: 101.2 },
+      { angle: -5.9, span: 13.2, inner: 74.3, outer: 99.5 },
+      { angle: 28.5, span: 17.1, inner: 73.9, outer: 109.4 },
+      { angle: 65.2, span: 21.6, inner: 75.7, outer: 125.7 },
+      { angle: 102.2, span: 22.7, inner: 80.2, outer: 141.7 },
+      { angle: 138.3, span: 22.0, inner: 85.8, outer: 152.3 },
+      { angle: 173.4, span: 21.7, inner: 87.5, outer: 154.6 },
+    ];
+
+    const letterModel = [
+      { angle: 145.4, clip: "arqonLetterClipA" },
+      { angle: 128.3, clip: "arqonLetterClipR" },
+      { angle: 95.7, clip: "arqonLetterClipQ" },
+      { angle: 59.5, clip: "arqonLetterClipO" },
+      { angle: 38.6, clip: "arqonLetterClipN" },
+    ];
+
+    const state = {
+      active: false,
+      pointerX: window.innerWidth / 2,
+      pointerY: window.innerHeight / 2,
+      angle: 0,
+      distance: 1,
+      segmentAngle: 0,
+      segmentDistance: 1,
+      pupilX: 8,
+      pupilY: 0,
+      targetPupilX: 8,
+      targetPupilY: 0,
+    };
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const mix = (from, to, amount) => from + (to - from) * amount;
+    const mixAngle = (from, to, amount) => {
+      const delta = Math.atan2(Math.sin(to - from), Math.cos(to - from));
+      return from + delta * amount;
+    };
+    const toRad = (deg) => (deg * Math.PI) / 180;
+    const toDeg = (rad) => (rad * 180) / Math.PI;
+    const normalizeDeg = (deg) => ((deg % 360) + 360) % 360;
+    const polar = (radius, angle) => ({
+      x: mark.cx + Math.cos(angle) * radius,
+      y: mark.cy + Math.sin(angle) * radius,
+    });
+    const angleDelta = (a, b) => Math.atan2(Math.sin(a - b), Math.cos(a - b));
+    const smoothstep = (value) => {
+      const x = clamp(value, 0, 1);
+      return x * x * (3 - 2 * x);
+    };
+    const sortedProfile = referenceProfile
+      .map((item) => ({ ...item, normalizedAngle: normalizeDeg(item.angle) }))
+      .sort((a, b) => a.normalizedAngle - b.normalizedAngle);
+
+    function sampleProfile(relativeAngle) {
+      const angle = normalizeDeg(relativeAngle);
+
+      for (let index = 0; index < sortedProfile.length; index += 1) {
+        const current = sortedProfile[index];
+        const next = sortedProfile[(index + 1) % sortedProfile.length];
+        const start = current.normalizedAngle;
+        const end = next.normalizedAngle + (next.normalizedAngle <= start ? 360 : 0);
+        const target = angle + (angle < start ? 360 : 0);
+
+        if (target >= start && target <= end) {
+          const t = end === start ? 0 : (target - start) / (end - start);
+          return {
+            span: mix(current.span, next.span, t),
+            inner: mix(current.inner, next.inner, t),
+            outer: mix(current.outer, next.outer, t),
+          };
+        }
+      }
+
+      return sortedProfile[0];
+    }
+
+    function segmentPath(angle, span, innerRadius, outerRadius) {
+      const half = toRad(span / 2);
+      const center = toRad(angle);
+      const a0 = center - half;
+      const a1 = center + half;
+      const p0 = polar(innerRadius, a0);
+      const p1 = polar(outerRadius, a0);
+      const p2 = polar(outerRadius, a1);
+      const p3 = polar(innerRadius, a1);
+
+      return [
+        `M ${p0.x.toFixed(2)} ${p0.y.toFixed(2)}`,
+        `L ${p1.x.toFixed(2)} ${p1.y.toFixed(2)}`,
+        `A ${outerRadius.toFixed(2)} ${outerRadius.toFixed(2)} 0 0 1 ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`,
+        `L ${p3.x.toFixed(2)} ${p3.y.toFixed(2)}`,
+        `A ${innerRadius.toFixed(2)} ${innerRadius.toFixed(2)} 0 0 0 ${p0.x.toFixed(2)} ${p0.y.toFixed(2)}`,
+        "Z",
+      ].join(" ");
+    }
+
+    const segmentNodes = segmentModel.map((segment) => {
+      const node = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      node.classList.add("arqon-segment");
+      if (segment.copper) node.classList.add("is-copper");
+      segmentLayer.append(node);
+      return { node, segment };
+    });
+
+    const letterLights = letterModel.map((letter) => {
+      const light = document.createElementNS("http://www.w3.org/2000/svg", "image");
+      light.classList.add("arqon-letter-light");
+      light.setAttribute("href", logoReference);
+      light.setAttributeNS("http://www.w3.org/1999/xlink", "href", logoReference);
+      light.setAttribute("x", "0");
+      light.setAttribute("y", "0");
+      light.setAttribute("width", "1254");
+      light.setAttribute("height", "1254");
+      light.setAttribute("preserveAspectRatio", "xMidYMid meet");
+      light.setAttribute("clip-path", `url(#${letter.clip})`);
+      light.style.opacity = "0";
+      letterLightLayer.append(light);
+
+      return { angle: toRad(letter.angle), light };
+    });
+
+    function updatePointer(event) {
+      state.active = true;
+      state.pointerX = event.clientX;
+      state.pointerY = event.clientY;
+    }
+
+    function updateTarget() {
+      const rect = demo.getBoundingClientRect();
+      const scale = 1254 / rect.width;
+      const centerX = rect.left + (mark.cx / 1254) * rect.width;
+      const centerY = rect.top + (mark.cy / 1254) * rect.height;
+
+      if (!state.active) {
+        state.pointerX = centerX + rect.width * 0.24;
+        state.pointerY = centerY;
+      }
+
+      const dx = (state.pointerX - centerX) * scale;
+      const dy = (state.pointerY - centerY) * scale;
+      const angle = Math.atan2(dy, dx);
+      const distance = clamp(Math.hypot(dx, dy) / 260, 0, 1);
+
+      state.angle = angle;
+      state.distance = distance;
+      state.targetPupilX = Math.cos(angle) * distance * 14;
+      state.targetPupilY = Math.sin(angle) * distance * 14;
+    }
+
+    function drawSegments() {
+      segmentNodes.forEach(({ node, segment }) => {
+        const profile = sampleProfile(segment.angle - toDeg(state.segmentAngle));
+        const neutral = sampleProfile(segment.angle);
+        const amount = Math.max(0.16, state.segmentDistance);
+        const span = mix(neutral.span, profile.span, amount);
+        const inner = mix(neutral.inner, profile.inner, amount);
+        const outer = mix(neutral.outer, profile.outer, amount);
+
+        node.setAttribute("d", segmentPath(segment.angle, span, inner, outer));
+        node.style.opacity = "0.98";
+      });
+    }
+
+    function drawLetterGlints() {
+      letterLights.forEach((letter) => {
+        const closeness = (Math.cos(angleDelta(state.segmentAngle, letter.angle)) + 1) / 2;
+        const intensity = smoothstep((closeness - 0.7) / 0.3) * state.segmentDistance;
+
+        letter.light.style.opacity = String((0.78 * intensity).toFixed(3));
+      });
+    }
+
+    let frameId = null;
+    function draw() {
+      if (!prefersReducedMotion) {
+        updateTarget();
+        state.pupilX = mix(state.pupilX, state.targetPupilX, 0.14);
+        state.pupilY = mix(state.pupilY, state.targetPupilY, 0.14);
+        state.segmentAngle = mixAngle(state.segmentAngle, state.angle, 0.14);
+        state.segmentDistance = mix(state.segmentDistance, state.distance, 0.14);
+      }
+
+      drawSegments();
+      drawLetterGlints();
+      pupil.setAttribute("transform", `translate(${state.pupilX.toFixed(2)} ${state.pupilY.toFixed(2)})`);
+      frameId = window.requestAnimationFrame(draw);
+    }
+
+    const start = () => {
+      if (frameId === null) frameId = window.requestAnimationFrame(draw);
+    };
+    const stop = () => {
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+        frameId = null;
+      }
+    };
+
+    window.addEventListener("pointermove", updatePointer, { passive: true });
+    window.addEventListener("pointerdown", updatePointer, { passive: true });
+    window.addEventListener("pointerleave", () => {
+      state.active = false;
+    });
+    window.addEventListener("blur", () => {
+      state.active = false;
+    });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) start();
+          else stop();
+        },
+        { rootMargin: "12% 0px" },
+      );
+      observer.observe(demo);
+    } else {
+      start();
+    }
+  }
+
   function bindMobileSliders() {
     bindSnapSlider({
       sliderSelector: "[data-doctor-slider]",
@@ -606,5 +860,6 @@
   bindReveal();
   bindBooking();
   bindMobileSliders();
+  bindArqonEye();
   renderAll();
 })();
