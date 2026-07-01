@@ -512,7 +512,7 @@
       const touch = event.touches?.[0] || event.changedTouches?.[0];
       return touch ? { x: touch.clientX, y: touch.clientY } : null;
     };
-    const lockVerticalGesture = (event) => {
+    const classifyTouchGesture = (event) => {
       if (!mobileSliderQuery.matches) return;
 
       const point = pointFromTouch(event);
@@ -520,13 +520,10 @@
 
       const dx = point.x - touchGesture.startX;
       const dy = point.y - touchGesture.startY;
-      if (!touchGesture.axis && Math.hypot(dx, dy) > 8) {
-        if (Math.abs(dy) > Math.abs(dx) * 1.15) touchGesture.axis = "y";
-        if (Math.abs(dx) > Math.abs(dy) * 1.15) touchGesture.axis = "x";
-      }
 
-      if (touchGesture.axis === "y") {
-        slider.scrollLeft = touchGesture.startScrollLeft;
+      if (!touchGesture.axis && Math.hypot(dx, dy) > 12) {
+        if (Math.abs(dy) > 16 && Math.abs(dy) > Math.abs(dx) * 1.4) touchGesture.axis = "y";
+        if (Math.abs(dx) > 16 && Math.abs(dx) > Math.abs(dy) * 1.1) touchGesture.axis = "x";
       }
     };
 
@@ -547,9 +544,10 @@
     }, { passive: true });
     slider.addEventListener("touchmove", (event) => {
       if (!touchGesture) return;
-      lockVerticalGesture(event);
+      classifyTouchGesture(event);
     }, { passive: true });
-    slider.addEventListener("touchend", () => {
+    slider.addEventListener("touchend", (event) => {
+      if (touchGesture) classifyTouchGesture(event);
       if (touchGesture?.axis === "y") {
         slider.scrollLeft = touchGesture.startScrollLeft;
         window.requestAnimationFrame(update);
