@@ -10,7 +10,7 @@
     />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="assets/images/hero-clinic.webp" as="image" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="assets/styles.css?v=20260701-ios-slider-swipe" />
+    <link rel="stylesheet" href="assets/styles.css?v=20260701-light-cases" />
   </head>
   <body>
     <header class="site-header" data-site-header>
@@ -24,7 +24,6 @@
 
       <nav class="main-nav" aria-label="Главная навигация">
         <a href="#doctors">Врачи</a>
-        <a href="#process">Работа</a>
         <a href="#treatment">Лечение</a>
         <a href="#services">Услуги</a>
         <a href="#booking">Запись</a>
@@ -117,47 +116,6 @@
         </div>
       </section>
 
-      <section class="section process-section" id="process" aria-labelledby="process-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Как проходит работа</p>
-          <h2 id="process-title">Пять шагов без боли.</h2>
-        </div>
-
-        <div class="process-slider-controls reveal" aria-label="Навигация по этапам работы">
-          <button class="process-slider-button" type="button" data-process-prev aria-label="Предыдущий этап">‹</button>
-          <span class="process-swipe-hint">Листайте этапы</span>
-          <button class="process-slider-button process-slider-next" type="button" data-process-next aria-label="Следующий этап">›</button>
-        </div>
-
-        <div class="process-track" data-process-slider>
-          <article class="process-step reveal" id="process-step-1" data-process-card data-process-index="0">
-            <span>01</span>
-            <h3>Осмотр</h3>
-            <p>Врач уточняет жалобы, смотрит состояние зубов и объясняет, что требует внимания.</p>
-          </article>
-          <article class="process-step reveal" id="process-step-2" data-process-card data-process-index="1">
-            <span>02</span>
-            <h3>Диагностика</h3>
-            <p>Снимки и цифровое планирование помогают увидеть картину целиком.</p>
-          </article>
-          <article class="process-step" id="process-step-3" data-process-card data-process-index="2">
-            <span>03</span>
-            <h3>План</h3>
-            <p>Пациент получает маршрут лечения, сроки и предварительную стоимость.</p>
-          </article>
-          <article class="process-step" id="process-step-4" data-process-card data-process-index="3">
-            <span>04</span>
-            <h3>Лечение</h3>
-            <p>Процедуры идут по согласованным этапам, без резких изменений в день приема.</p>
-          </article>
-          <article class="process-step" id="process-step-5" data-process-card data-process-index="4">
-            <span>05</span>
-            <h3>Контроль</h3>
-            <p>После приема врач дает рекомендации и назначает контроль при необходимости.</p>
-          </article>
-        </div>
-      </section>
-
       <section class="section treatment-section" id="treatment" aria-labelledby="treatment-title">
         <div class="treatment-layout">
           <div class="treatment-copy reveal">
@@ -187,11 +145,6 @@
         </div>
 
         <div class="services-layout">
-          <figure class="image-panel service-photo reveal">
-            <img src="assets/images/aesthetic-smile.webp" alt="Подбор оттенка зубов для эстетического лечения" width="1400" height="778" loading="lazy" decoding="async" />
-            <figcaption>Эстетическая стоматология и подбор оттенка</figcaption>
-          </figure>
-
           <div class="service-slider-controls reveal" aria-label="Навигация по услугам">
             <button class="service-slider-button" type="button" data-service-prev aria-label="Предыдущая услуга">‹</button>
             <span class="service-swipe-hint">Листайте услуги</span>
@@ -202,6 +155,10 @@
             <article class="service-card reveal" id="service-consultation" data-service-card data-service-index="0">
               <span>30 минут</span>
               <h3>Консультация</h3>
+              <figure class="case-preview">
+                <img src="assets/images/case-consultation.webp" alt="Кейс консультации: состояние до планирования и визуальный прогноз после" width="960" height="615" loading="lazy" decoding="async" />
+                <figcaption><span>Было</span><span>Стало</span></figcaption>
+              </figure>
               <p>Первичный осмотр, ответы на вопросы и маршрут лечения.</p>
               <strong>от 1 500 ₽</strong>
               <button type="button" data-service-shortcut="Консультация">Записаться</button>
@@ -209,6 +166,10 @@
             <article class="service-card reveal" id="service-hygiene" data-service-card data-service-index="1">
               <span>60 минут</span>
               <h3>Профгигиена</h3>
+              <figure class="case-preview">
+                <img src="assets/images/case-hygiene.webp" alt="Кейс профгигиены: зубы до очищения и после полировки" width="960" height="601" loading="lazy" decoding="async" />
+                <figcaption><span>Было</span><span>Стало</span></figcaption>
+              </figure>
               <p>Удаление налета, полировка и подбор домашнего ухода.</p>
               <strong>от 4 900 ₽</strong>
               <button type="button" data-service-shortcut="Профгигиена">Записаться</button>
@@ -216,6 +177,10 @@
             <article class="service-card" id="service-caries" data-service-card data-service-index="2">
               <span>60 минут</span>
               <h3>Лечение кариеса</h3>
+              <figure class="case-preview">
+                <img src="assets/images/case-caries.webp" alt="Кейс лечения кариеса: зуб до восстановления и после реставрации" width="960" height="601" loading="lazy" decoding="async" />
+                <figcaption><span>Было</span><span>Стало</span></figcaption>
+              </figure>
               <p>Аккуратное восстановление зуба с подбором цвета.</p>
               <strong>от 6 800 ₽</strong>
               <button type="button" data-service-shortcut="Лечение кариеса">Записаться</button>
@@ -223,6 +188,10 @@
             <article class="service-card" id="service-implant" data-service-card data-service-index="3">
               <span>90 минут</span>
               <h3>Имплантация</h3>
+              <figure class="case-preview">
+                <img src="assets/images/case-implant.webp" alt="Кейс имплантации: зона улыбки до восстановления и после установки коронки" width="960" height="601" loading="lazy" decoding="async" />
+                <figcaption><span>Было</span><span>Стало</span></figcaption>
+              </figure>
               <p>Хирургический этап и дальнейшее восстановление функции.</p>
               <strong>от 39 000 ₽</strong>
               <button type="button" data-service-shortcut="Имплантация" data-doctor-shortcut="Марк Левин">Записаться</button>
@@ -230,6 +199,10 @@
             <article class="service-card" id="service-veneers" data-service-card data-service-index="4">
               <span>2 визита</span>
               <h3>Виниры</h3>
+              <figure class="case-preview">
+                <img src="assets/images/case-veneers.webp" alt="Кейс виниров: улыбка до эстетической коррекции и после установки виниров" width="960" height="601" loading="lazy" decoding="async" />
+                <figcaption><span>Было</span><span>Стало</span></figcaption>
+              </figure>
               <p>Форма, цвет и линия улыбки с естественным результатом.</p>
               <strong>от 24 000 ₽</strong>
               <button type="button" data-service-shortcut="Виниры" data-doctor-shortcut="Тимур Рахманов">Записаться</button>
@@ -237,6 +210,10 @@
             <article class="service-card" id="service-ortho" data-service-card data-service-index="5">
               <span>от 40 минут</span>
               <h3>Ортодонтия</h3>
+              <figure class="case-preview">
+                <img src="assets/images/case-ortho.webp" alt="Кейс ортодонтии: зубы до выравнивания и после коррекции прикуса" width="960" height="601" loading="lazy" decoding="async" />
+                <figcaption><span>Было</span><span>Стало</span></figcaption>
+              </figure>
               <p>Брекеты, элайнеры и цифровой план исправления прикуса.</p>
               <strong>от 3 000 ₽</strong>
               <button type="button" data-service-shortcut="Ортодонтия" data-doctor-shortcut="Ева Сафина">Записаться</button>
@@ -431,6 +408,6 @@
       </div>
     </footer>
 
-    <script src="assets/app.js?v=20260701-ios-slider-swipe" defer></script>
+    <script src="assets/app.js?v=20260701-light-cases" defer></script>
   </body>
 </html>

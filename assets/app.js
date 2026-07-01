@@ -835,13 +835,6 @@
       parallaxTo: -12,
     });
     bindSnapSlider({
-      sliderSelector: "[data-process-slider]",
-      cardSelector: "[data-process-card]",
-      prevSelector: "[data-process-prev]",
-      nextSelector: "[data-process-next]",
-      hintSelector: ".process-swipe-hint",
-    });
-    bindSnapSlider({
       sliderSelector: "[data-service-slider]",
       cardSelector: "[data-service-card]",
       prevSelector: "[data-service-prev]",
